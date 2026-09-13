@@ -1,0 +1,41 @@
+npm i express mongoose dotenv cors bcryptjs jsonwebtoken
+npm i -D nodemon
+
+server/
+│
+├── config/
+│   └── db.js
+│
+├── controllers/
+│   ├── authController.js
+│   ├── userController.js
+│   ├── cartController.js
+│   ├── wishlistController.js
+│   └── legalController.js
+│
+├── data/
+│   └── legalData.js
+│
+├── middlewares/
+│   ├── authMiddleware.js
+│   └── errorMiddleware.js
+│
+├── models/
+│   ├── User.js
+│   ├── Cart.js
+│   └── Wishlist.js
+│
+├── routes/
+│   ├── authRoutes.js
+│   ├── userRoutes.js
+│   ├── cartRoutes.js
+│   ├── wishlistRoutes.js
+│   └── legalRoutes.js
+│
+├── utils/
+│   └── generateToken.js
+│
+├── .env
+├── .gitignore
+├── package.json
+└── server.js
