@@ -1,7 +1,18 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import Container from "../common/Container";
 
 function Header() {
+  const navigate = useNavigate();
+
+  const token = localStorage.getItem("token"); 
+
+  // Logout handler
+  const handleLogout = () => {
+    localStorage.removeItem("token"); 
+    // localStorage.removeItem("user"); 
+    navigate("/login"); 
+  };
+
   const navClass = ({ isActive }) =>
     `text-sm font-medium transition ${
       isActive
@@ -51,12 +62,22 @@ function Header() {
             </span>
           </Link>
 
-          <Link
-            to="/login"
-            className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-700"
-          >
-            Login
-          </Link>
+          {/* Conditional Rendering */}
+          {token ? (
+            <button
+              onClick={handleLogout}
+              className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-red-700"
+            >
+              Logout
+            </button>
+          ) : (
+            <Link
+              to="/login"
+              className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-700"
+            >
+              Login
+            </Link>
+          )}
         </div>
       </Container>
     </header>
