@@ -52,6 +52,7 @@ function ProductDetails() {
         image: product.image,
         quantity
       });
+      window.dispatchEvent(new Event("cartUpdated"));
       alert("Added to cart.");
     } catch (error) {
       alert(error.response?.data?.message || "Failed to add to cart.");
