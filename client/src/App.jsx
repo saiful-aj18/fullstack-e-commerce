@@ -21,6 +21,9 @@ import Invoice from './pages/Invoice.jsx';
 import Review from './pages/Review.jsx'; 
 import Register from './pages/Register.jsx';
 
+import Products from "./pages/Products";
+import ProductDetails from "./pages/ProductDetails";
+
 function App() {
   return (
     <div className="flex min-h-screen flex-col">
@@ -47,6 +50,9 @@ function App() {
           <Route path="/terms" Component={Terms} />
           <Route path="/privacy" Component={Privacy} />
           <Route path="/how-to-buy" Component={HowToBuy} />
+
+          <Route path="/products" Component={Products} />
+          <Route path="/products/:id" Component={ProductDetails} />
 
           <Route path="*" Component={NotFound} />
         </Routes>

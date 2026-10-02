@@ -48,6 +48,10 @@ function Header() {
           <NavLink to="/profile" className={navClass}>
             Profile
           </NavLink>
+
+          <NavLink to="/products" className={navClass}>
+            Products
+          </NavLink>
         </nav>
 
         {/* Actions */}
