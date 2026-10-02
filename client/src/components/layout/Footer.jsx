@@ -10,7 +10,7 @@ function Footer() {
 
           <div>
             <h2 className="text-4xl font-black tracking-[-0.07em]">
-              SHOPLY<span className="text-white/30">®</span>
+              SHOPLY
             </h2>
 
             <p className="mt-5 max-w-sm text-sm leading-6 text-white/40">
@@ -84,6 +84,7 @@ function Footer() {
         <div className="mt-16 flex flex-col justify-between gap-3 border-t border-white/10 pt-6 text-[10px] font-bold uppercase tracking-[0.15em] text-white/30 sm:flex-row">
           <span>© 2026 Shoply</span>
           <span>Built for modern commerce</span>
+          <span>Developed by Saiful Islam</span>
         </div>
 
       </div>
