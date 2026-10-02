@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
-import Container from "../components/common/Container";
-import PageHeader from "../components/common/PageHeader";
 import ProductFilter from "../components/products/ProductFilter";
 import ProductGrid from "../components/products/ProductGrid";
 import LoadingSkeleton from "../components/common/LoadingSkeleton";
@@ -43,6 +41,7 @@ function Products() {
   };
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     getProducts();
     getCategories();
   }, []);
@@ -64,28 +63,42 @@ function Products() {
       return 0;
     });
 
-  return (
-    <>
-      <PageHeader
-        title="All Products"
-        description="Browse our full product catalog."
+    return (
+  <div className="min-h-screen bg-[#dce2e4] px-3 py-8 sm:px-5 sm:py-12">
+    <div className="mx-auto max-w-[1500px]">
+
+      <ProductFilter
+        categories={categories}
+        activeCategory={activeCategory}
+        onCategoryChange={handleCategoryChange}
+        search={search}
+        onSearchChange={setSearch}
+        sort={sort}
+        onSortChange={setSort}
       />
 
-      <Container className="py-12">
-        <ProductFilter
-          categories={categories}
-          activeCategory={activeCategory}
-          onCategoryChange={handleCategoryChange}
-          search={search}
-          onSearchChange={setSearch}
-          sort={sort}
-          onSortChange={setSort}
-        />
+      <div className="mb-8 flex items-center justify-between border-b border-black/10 pb-4">
+        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-black/40">
+          {visibleProducts.length} products
+        </p>
 
-        {loading ? <LoadingSkeleton /> : <ProductGrid products={visibleProducts} />}
-      </Container>
-    </>
-  );
+        <p className="hidden text-[10px] uppercase tracking-[0.15em] text-black/30 sm:block">
+          Curated selection / Shoply
+        </p>
+      </div>
+
+      {loading ? (
+        <LoadingSkeleton />
+      ) : (
+        <ProductGrid products={visibleProducts} />
+      )}
+
+    </div>
+  </div>
+);
+
+ 
 }
 
 export default Products;
+

@@ -1,101 +1,92 @@
 import { Link } from "react-router-dom";
-import Container from "../common/Container";
 
 function Footer() {
   return (
-    <footer className="mt-16 border-t bg-slate-950 text-slate-300">
-      <Container className="py-12">
-        <div className="grid gap-10 md:grid-cols-4">
-          <div>
-            <h3 className="text-xl font-bold text-white">
-              Shop<span className="text-indigo-400">ly</span>
-            </h3>
+    <footer className="bg-[#0b0808] px-4 py-12 text-white sm:px-6 lg:px-8">
 
-            <p className="mt-4 text-sm leading-6 text-slate-400">
-              A modern e-commerce experience built with React,
-              Tailwind CSS and a REST API.
+      <div className="mx-auto max-w-[1500px]">
+
+        <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
+
+          <div>
+            <h2 className="text-4xl font-black tracking-[-0.07em]">
+              SHOPLY<span className="text-white/30">®</span>
+            </h2>
+
+            <p className="mt-5 max-w-sm text-sm leading-6 text-white/40">
+              A modern shopping experience built around
+              simplicity, discovery and everyday essentials.
             </p>
           </div>
 
           <div>
-            <h4 className="font-semibold text-white">Shop</h4>
+            <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.2em] text-white/30">
+              Explore
+            </p>
 
-            <div className="mt-4 space-y-3 text-sm">
-              <Link
-                to="/"
-                className="block hover:text-white"
-              >
+            <div className="space-y-3 text-sm">
+              <Link className="block hover:text-white/50" to="/">
                 Home
               </Link>
 
-              <Link
-                to="/wishlist"
-                className="block hover:text-white"
-              >
-                Wishlist
+              <Link className="block hover:text-white/50" to="/products">
+                Shop
               </Link>
 
-              <Link
-                to="/cart"
-                className="block hover:text-white"
-              >
+              <Link className="block hover:text-white/50" to="/wishlist">
+                Wishlist
+              </Link>
+            </div>
+          </div>
+
+          <div>
+            <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.2em] text-white/30">
+              Account
+            </p>
+
+            <div className="space-y-3 text-sm">
+              <Link className="block hover:text-white/50" to="/profile">
+                Profile
+              </Link>
+
+              <Link className="block hover:text-white/50" to="/orders">
+                Orders
+              </Link>
+
+              <Link className="block hover:text-white/50" to="/cart">
                 Cart
               </Link>
             </div>
           </div>
 
           <div>
-            <h4 className="font-semibold text-white">Account</h4>
+            <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.2em] text-white/30">
+              Information
+            </p>
 
-            <div className="mt-4 space-y-3 text-sm">
-              <Link
-                to="/login"
-                className="block hover:text-white"
-              >
-                Login
+            <div className="space-y-3 text-sm">
+              <Link className="block hover:text-white/50" to="/terms">
+                Terms
               </Link>
 
-              <Link
-                to="/profile"
-                className="block hover:text-white"
-              >
-                My Profile
-              </Link>
-            </div>
-          </div>
-
-          <div>
-            <h4 className="font-semibold text-white">Information</h4>
-
-            <div className="mt-4 space-y-3 text-sm">
-              <Link
-                to="/terms"
-                className="block hover:text-white"
-              >
-                Terms & Conditions
+              <Link className="block hover:text-white/50" to="/privacy">
+                Privacy
               </Link>
 
-              <Link
-                to="/privacy"
-                className="block hover:text-white"
-              >
-                Privacy Policy
-              </Link>
-
-              <Link
-                to="/how-to-buy"
-                className="block hover:text-white"
-              >
-                How To Buy
+              <Link className="block hover:text-white/50" to="/how-to-buy">
+                How to buy
               </Link>
             </div>
           </div>
+
         </div>
 
-        <div className="mt-10 border-t border-slate-800 pt-6 text-center text-sm text-slate-500">
-          © 2026 Shoply. All rights reserved.
+        <div className="mt-16 flex flex-col justify-between gap-3 border-t border-white/10 pt-6 text-[10px] font-bold uppercase tracking-[0.15em] text-white/30 sm:flex-row">
+          <span>© 2026 Shoply</span>
+          <span>Built for modern commerce</span>
         </div>
-      </Container>
+
+      </div>
     </footer>
   );
 }

@@ -1,89 +1,145 @@
+import { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import Container from "../common/Container";
 
 function Header() {
   const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
 
-  const token = localStorage.getItem("token"); 
+  const token = localStorage.getItem("token");
 
-  // Logout handler
   const handleLogout = () => {
-    localStorage.removeItem("token"); 
-    // localStorage.removeItem("user"); 
-    navigate("/login"); 
+    localStorage.removeItem("token");
+    navigate("/login");
   };
 
   const navClass = ({ isActive }) =>
-    `text-sm font-medium transition ${
+    `transition ${
       isActive
-        ? "text-indigo-600"
-        : "text-slate-600 hover:text-indigo-600"
+        ? "text-black"
+        : "text-[#66747a] hover:text-black"
     }`;
 
   return (
-    <header className="sticky top-0 z-50 border-b bg-white/95 backdrop-blur">
-      <Container className="flex h-16 items-center justify-between">
-        {/* Logo */}
-        <Link
-          to="/"
-          className="text-xl font-extrabold tracking-tight text-slate-900"
-        >
-          Shop<span className="text-indigo-600">ly</span>
-        </Link>
+    <header className="sticky top-0 z-50 px-3 pt-3 sm:px-5">
+      <div className="mx-auto max-w-[1500px] rounded-[22px] border border-black/5 bg-[#dce2e4]/90 px-4 shadow-[0_8px_30px_rgba(0,0,0,0.04)] backdrop-blur-xl sm:px-6">
 
-        {/* Navigation */}
-        <nav className="hidden items-center gap-7 md:flex">
-          <NavLink to="/" className={navClass}>
-            Home
-          </NavLink>
+        <div className="flex h-[68px] items-center justify-between">
 
-          <NavLink to="/wishlist" className={navClass}>
-            Wishlist
-          </NavLink>
-
-          <NavLink to="/cart" className={navClass}>
-            Cart
-          </NavLink>
-
-          <NavLink to="/profile" className={navClass}>
-            Profile
-          </NavLink>
-
-          <NavLink to="/products" className={navClass}>
-            Products
-          </NavLink>
-        </nav>
-
-        {/* Actions */}
-        <div className="flex items-center gap-3">
+          {/* Logo */}
           <Link
-            to="/cart"
-            className="relative rounded-lg p-2 text-slate-600 hover:bg-slate-100"
+            to="/"
+            className="text-[24px] font-black tracking-[-0.08em] text-black"
           >
-            🛒
-            <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-indigo-600 text-[10px] font-bold text-white">
-              2
-            </span>
+            SHOPLY
           </Link>
 
-          {/* Conditional Rendering */}
-          {token ? (
-            <button
-              onClick={handleLogout}
-              className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-red-700"
-            >
-              Logout
-            </button>
-          ) : (
+          {/* Desktop nav */}
+          <nav className="hidden items-center gap-8 text-[11px] font-bold uppercase tracking-[0.14em] md:flex">
+            <NavLink to="/" className={navClass}>
+              Home
+            </NavLink>
+
+            <NavLink to="/products" className={navClass}>
+              Shop
+            </NavLink>
+
+            <NavLink to="/wishlist" className={navClass}>
+              Wishlist
+            </NavLink>
+
+            <NavLink to="/profile" className={navClass}>
+              Profile
+            </NavLink>
+
+            <NavLink to="/orders" className={navClass}>
+              Orders
+            </NavLink>
+          </nav>
+
+          {/* Right actions */}
+          <div className="flex items-center gap-2">
+
             <Link
-              to="/login"
-              className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-700"
+              to="/cart"
+              className="flex h-10 items-center gap-2 rounded-full bg-black px-4 text-[11px] font-bold uppercase tracking-[0.1em] text-white transition hover:scale-[1.03]"
             >
-              Login
+              Cart
+              <span className="text-white/50">→</span>
             </Link>
-          )}
+
+            {token ? (
+              <button
+                onClick={handleLogout}
+                className="hidden h-10 rounded-full border border-black/10 bg-white/50 px-4 text-[11px] font-bold uppercase tracking-[0.1em] text-black transition hover:bg-white sm:block"
+              >
+                Logout
+              </button>
+            ) : (
+              <Link
+                to="/login"
+                className="hidden h-10 rounded-full border border-black/10 bg-white/50 px-4 text-[11px] font-bold uppercase tracking-[0.1em] text-black transition hover:bg-white sm:flex sm:items-center"
+              >
+                Login
+              </Link>
+            )}
+
+            <button
+              onClick={() => setOpen(!open)}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white/50 md:hidden"
+              aria-label="Toggle menu"
+            >
+              <span className="text-lg">{open ? "×" : "☰"}</span>
+            </button>
+          </div>
         </div>
-      </Container>
+
+        {/* Mobile menu */}
+        {open && (
+          <div className="border-t border-black/5 py-5 md:hidden">
+            <nav className="flex flex-col gap-4 text-xs font-bold uppercase tracking-[0.14em]">
+              <NavLink
+                to="/"
+                onClick={() => setOpen(false)}
+                className={navClass}
+              >
+                Home
+              </NavLink>
+
+              <NavLink
+                to="/products"
+                onClick={() => setOpen(false)}
+                className={navClass}
+              >
+                Shop
+              </NavLink>
+
+              <NavLink
+                to="/wishlist"
+                onClick={() => setOpen(false)}
+                className={navClass}
+              >
+                Wishlist
+              </NavLink>
+
+              <NavLink
+                to="/profile"
+                onClick={() => setOpen(false)}
+                className={navClass}
+              >
+                Profile
+              </NavLink>
+
+              <NavLink
+                to="/orders"
+                onClick={() => setOpen(false)}
+                className={navClass}
+              >
+                Orders
+              </NavLink>
+            </nav>
+          </div>
+        )}
+      </div>
     </header>
   );
 }

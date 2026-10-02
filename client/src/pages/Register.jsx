@@ -1,176 +1,80 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-
-import Container from "../components/common/Container";
+import { Link } from "react-router-dom";
 import api from "../api/axios";
 
-
 function Register() {
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const navigate = useNavigate();
-
   const handleRegister = async (e) => {
     e.preventDefault();
     setError("");
-
     if (!name || !email || !password) {
       setError("Name, email and password are required.");
       return;
     }
-
     try {
       setLoading(true);
-
-      const res = await api.post("/auth/register", {
-        name,
-        email,
-        password
-      });
-
-      // Auto-login right after registration — the backend already
-      // returns a token + user on register, so no need to make the
-      // user log in again separately.
+      const res = await api.post("/auth/register", { name, email, password });
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("userId", res.data.user.id);
-
-      // Full page redirect (not just navigate()) so the Header
-      // re-reads localStorage and switches to the "logged in" state.
       window.location.href = "/";
-
     } catch (err) {
-      setError(
-        err.response?.data?.message || "Registration failed. Please try again."
-      );
+      setError(err.response?.data?.message || "Registration failed. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <section className="flex min-h-[calc(100vh-64px)] items-center py-16">
-      <Container>
-        <div className="mx-auto grid max-w-5xl overflow-hidden rounded-3xl border bg-white shadow-xl lg:grid-cols-2">
-          {/* Left */}
-          <div className="hidden bg-slate-950 p-12 lg:block">
-            <div className="flex h-full flex-col justify-between">
-              <div>
-                <h2 className="text-3xl font-bold text-white">
-                  Join Shoply.
-                </h2>
-
-                <p className="mt-4 leading-7 text-slate-400">
-                  Create an account to save your wishlist, manage your
-                  cart and track your orders.
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
-                <p className="text-sm text-slate-400">
-                  "A simple shopping experience with everything you
-                  need."
-                </p>
-
-                <p className="mt-4 text-sm font-semibold text-white">
-                  — Shoply Team
-                </p>
-              </div>
+    <section className="min-h-[calc(100vh-90px)] p-4 sm:p-6 lg:p-8">
+      <div className="mx-auto grid min-h-[720px] max-w-[1450px] overflow-hidden rounded-[2.5rem] bg-[#111313] lg:grid-cols-[.95fr_1.05fr]">
+        <div className="relative order-2 flex items-center bg-[#e7ecee] p-6 sm:p-12 lg:order-1 lg:p-16">
+          <div className="mx-auto w-full max-w-md">
+            <Link to="/" className="text-xl font-black tracking-[-0.05em] lg:hidden">SHOPLY<span className="text-black/35">.</span></Link>
+            <div className="mt-10 lg:mt-0">
+              <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-black/35">Account / Register</p>
+              <h1 className="mt-3 text-4xl font-black tracking-[-0.05em]">Create account.</h1>
+              <p className="mt-3 text-sm text-black/45">Join Shoply and start building your collection.</p>
             </div>
-          </div>
-
-          {/* Form */}
-          <div className="p-8 sm:p-12">
-            <div className="mx-auto max-w-md">
-              <div className="mb-8">
-                <h1 className="text-3xl font-bold text-slate-900">
-                  Create Account
-                </h1>
-
-                <p className="mt-2 text-slate-500">
-                  Fill in your details to get started.
-                </p>
-              </div>
-
-              {error && (
-                <div className="mb-5 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-600">
-                  {error}
-                </div>
-              )}
-
-              <form onSubmit={handleRegister} className="space-y-5">
-                <div>
-                  <label className="mb-2 block text-sm font-semibold text-slate-700">
-                    Full Name
-                  </label>
-
-                  <input
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="John Doe"
-                    className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
-                  />
-                </div>
-
-                <div>
-                  <label className="mb-2 block text-sm font-semibold text-slate-700">
-                    Email Address
-                  </label>
-
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="you@example.com"
-                    className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
-                  />
-                </div>
-
-                <div>
-                  <label className="mb-2 block text-sm font-semibold text-slate-700">
-                    Password
-                  </label>
-
-                  <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="••••••••"
-                    className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full rounded-lg bg-indigo-600 py-3 font-semibold text-white transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50"
-                >
-                  {loading ? "Creating account..." : "Create Account"}
-                </button>
-              </form>
-
-              <div className="mt-8 text-center text-sm text-slate-500">
-                Already have an account?{" "}
-                <Link to="/login" className="font-semibold text-indigo-600">
-                  Login
-                </Link>
-              </div>
-
-              <Link
-                to="/"
-                className="mt-6 block text-center text-sm font-medium text-slate-500 hover:text-slate-900"
-              >
-                ← Back to home
-              </Link>
-            </div>
+            {error && <div className="mt-6 rounded-2xl bg-red-50 px-4 py-3 text-sm text-red-600">{error}</div>}
+            <form onSubmit={handleRegister} className="mt-8 space-y-5">
+              {[
+                ["name", "Full name", name, setName, "John Doe", "text"],
+                ["email", "Email", email, setEmail, "you@example.com", "email"],
+                ["password", "Password", password, setPassword, "••••••••", "password"],
+              ].map(([key, label, value, setter, placeholder, type]) => (
+                <label key={key} className="block">
+                  <span className="mb-2 block text-[10px] font-bold uppercase tracking-[0.16em] text-black/45">{label}</span>
+                  <input type={type} value={value} onChange={(e) => setter(e.target.value)} placeholder={placeholder}
+                    className="w-full rounded-2xl border border-black/10 bg-white px-4 py-4 text-sm outline-none transition focus:border-black/35" />
+                </label>
+              ))}
+              <button disabled={loading} className="w-full rounded-full bg-[#111313] py-4 text-sm font-bold text-white transition hover:-translate-y-0.5 disabled:opacity-40">
+                {loading ? "Creating account..." : "Create account"} <span className="ml-2">↗</span>
+              </button>
+            </form>
+            <p className="mt-8 text-center text-sm text-black/45">
+              Already have an account? <Link to="/login" className="font-bold text-black">Login</Link>
+            </p>
           </div>
         </div>
-      </Container>
+
+        <div className="relative order-1 hidden overflow-hidden p-10 text-white lg:order-2 lg:flex lg:flex-col lg:justify-between xl:p-14">
+          <Link to="/" className="relative text-xl font-black tracking-[-0.05em]">SHOPLY<span className="text-[#a9b8bc]">.</span></Link>
+          <div className="relative max-w-xl">
+            <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/35">Start your collection</p>
+            <h2 className="mt-5 text-6xl font-black leading-[.9] tracking-[-0.06em] xl:text-8xl">Find<br />your next.</h2>
+            <p className="mt-8 max-w-md text-sm leading-7 text-white/45">
+              One account for your cart, wishlist, orders and everything you discover.
+            </p>
+          </div>
+          <div className="absolute -bottom-24 -right-20 h-96 w-96 rounded-full border border-white/10" />
+        </div>
+      </div>
     </section>
   );
 }

@@ -1,136 +1,73 @@
 import { Link } from "react-router-dom";
-import Container from "../components/common/Container";
+import Hero from "../components/home/Hero";
+import CategorySection from "../components/home/CategorySection";
+import FeaturedProducts from "../components/home/FeaturedProducts";
+
+import heroImage from "../assets/hero.png";
 
 function Home() {
   return (
-    <>
-      <section className="bg-slate-950">
-        <Container className="grid min-h-[480px] items-center gap-10 py-16 lg:grid-cols-2">
-          <div>
-            <span className="inline-flex rounded-full bg-indigo-500/10 px-4 py-2 text-sm font-semibold text-indigo-300">
-              Modern Shopping Experience
-            </span>
+    <div className="bg-[#dce2e4] text-[#0b0808]">
 
-            <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
-              Everything you need,
-              <span className="block text-indigo-400">
-                all in one place.
+      <Hero />
+
+      {/* Marquee */}
+      <section className="overflow-hidden border-y border-black/10 bg-[#dce2e4] py-4">
+        <div className="whitespace-nowrap text-center text-[11px] font-bold uppercase tracking-[0.25em] text-black/60">
+          New Season — Everyday Essentials — Curated Products — Shoply —
+          New Season — Everyday Essentials — Curated Products
+        </div>
+      </section>
+
+      <CategorySection />
+
+      <FeaturedProducts />
+
+      {/* Editorial banner */}
+      <section className="px-3 pb-4 sm:px-5">
+        <div className="mx-auto grid max-w-[1500px] overflow-hidden rounded-[30px] bg-[#0b0808] lg:grid-cols-2">
+
+          <div className="flex min-h-[430px] flex-col justify-between p-7 text-white sm:p-10 lg:p-14">
+
+            <div>
+              <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-white/40">
+                Shoply / 2026
               </span>
-            </h1>
 
-            <p className="mt-6 max-w-xl text-lg leading-8 text-slate-400">
-              Discover products, manage your cart, save your
-              favorite items and manage your account from one
-              simple platform.
-            </p>
+              <h2 className="mt-8 max-w-xl text-[clamp(48px,7vw,105px)] font-black leading-[0.85] tracking-[-0.07em]">
+                FIND
+                <br />
+                YOUR
+                <br />
+                NEXT.
+              </h2>
+            </div>
 
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Link
-                to="/cart"
-                className="rounded-lg bg-indigo-600 px-6 py-3 font-semibold text-white hover:bg-indigo-700"
-              >
-                View Cart
-              </Link>
+            <Link
+              to="/products"
+              className="mt-10 flex w-fit items-center gap-4 rounded-full bg-white px-6 py-3 text-xs font-bold uppercase tracking-[0.12em] text-black transition hover:scale-[1.03]"
+            >
+              Explore collection
+              <span>↗</span>
+            </Link>
+          </div>
 
-              <Link
-                to="/wishlist"
-                className="rounded-lg border border-slate-700 px-6 py-3 font-semibold text-white hover:bg-slate-900"
-              >
-                View Wishlist
-              </Link>
+          <div className="relative min-h-[430px] overflow-hidden bg-[#9a928a]">
+            <img
+              src=
+              {heroImage}
+              alt="Shoply collection"
+              className="absolute inset-0 h-full w-full object-cover mix-blend-multiply opacity-90 transition duration-700 hover:scale-105"
+            />
+
+            <div className="absolute bottom-6 right-6 rounded-full bg-white px-5 py-2 text-[10px] font-bold uppercase tracking-[0.15em]">
+              01 / 04
             </div>
           </div>
 
-          <div className="hidden lg:block">
-            <div className="rounded-3xl border border-slate-800 bg-slate-900 p-6 shadow-2xl">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="rounded-2xl bg-white p-6">
-                  <div className="text-3xl">🛒</div>
-                  <p className="mt-4 font-semibold text-slate-900">
-                    Your Cart
-                  </p>
-                  <p className="mt-1 text-sm text-slate-500">
-                    2 items
-                  </p>
-                </div>
-
-                <div className="rounded-2xl bg-indigo-600 p-6 text-white">
-                  <div className="text-3xl">❤️</div>
-                  <p className="mt-4 font-semibold">
-                    Wishlist
-                  </p>
-                  <p className="mt-1 text-sm text-indigo-200">
-                    4 items
-                  </p>
-                </div>
-
-                <div className="col-span-2 rounded-2xl bg-slate-800 p-6">
-                  <div className="flex items-center gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-indigo-500 text-xl">
-                      👤
-                    </div>
-
-                    <div>
-                      <p className="font-semibold text-white">
-                        Welcome back!
-                      </p>
-                      <p className="text-sm text-slate-400">
-                        Manage your profile and orders.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Container>
+        </div>
       </section>
-
-      <section className="py-16">
-        <Container>
-          <div className="grid gap-6 md:grid-cols-3">
-            <Link
-              to="/profile"
-              className="rounded-2xl border bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
-            >
-              <div className="text-3xl">👤</div>
-              <h3 className="mt-5 text-lg font-bold">
-                Manage Profile
-              </h3>
-              <p className="mt-2 text-sm text-slate-500">
-                View and manage your account information.
-              </p>
-            </Link>
-
-            <Link
-              to="/cart"
-              className="rounded-2xl border bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
-            >
-              <div className="text-3xl">🛒</div>
-              <h3 className="mt-5 text-lg font-bold">
-                Shopping Cart
-              </h3>
-              <p className="mt-2 text-sm text-slate-500">
-                Review products before checkout.
-              </p>
-            </Link>
-
-            <Link
-              to="/wishlist"
-              className="rounded-2xl border bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
-            >
-              <div className="text-3xl">❤️</div>
-              <h3 className="mt-5 text-lg font-bold">
-                Wishlist
-              </h3>
-              <p className="mt-2 text-sm text-slate-500">
-                Keep track of products you love.
-              </p>
-            </Link>
-          </div>
-        </Container>
-      </section>
-    </>
+    </div>
   );
 }
 

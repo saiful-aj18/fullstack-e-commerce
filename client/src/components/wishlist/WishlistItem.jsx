@@ -1,80 +1,44 @@
-function WishlistItem({
-  image,
-  title,
-  price,
-  productId, // CHANGED: was `_id` (wishlist items don't have an _id)
-  removeWishlist
-}) {
+import { Link } from "react-router-dom";
 
+function WishlistItem({ image, title, price, productId, removeWishlist }) {
+  return (
+    <article className="group">
+      <div className="relative flex aspect-[4/5] items-center justify-center overflow-hidden rounded-[2rem] bg-[#e6ebed]">
+        <Link to={`/products/${productId}`} className="absolute inset-0">
+          <img
+            src={image}
+            alt={title}
+            className="h-full w-full object-contain p-8 transition duration-700 group-hover:scale-105"
+          />
+        </Link>
 
-return (
+        <button
+          onClick={() => removeWishlist(productId)}
+          aria-label="Remove from wishlist"
+          className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-sm shadow-sm backdrop-blur transition hover:bg-[#111313] hover:text-white"
+        >
+          ♥
+        </button>
 
-<div className="group overflow-hidden rounded-2xl border bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+        <Link
+          to={`/products/${productId}`}
+          className="absolute bottom-4 left-4 right-4 z-10 translate-y-3 rounded-full bg-[#111313] px-4 py-3 text-center text-xs font-bold text-white opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100"
+        >
+          View product ↗
+        </Link>
+      </div>
 
-
-<div className="relative flex h-56 items-center justify-center bg-slate-100">
-
-<img
-src={image}
-alt={title}
-className="h-full w-full object-contain p-6"
-/>
-
-
-<button
-
-onClick={()=>removeWishlist(productId)}
-
-className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white text-red-500 shadow-sm"
-
->
-♥
-</button>
-
-
-</div>
-
-
-
-<div className="p-5">
-
-<h3 className="font-semibold text-slate-900">
-
-{title}
-
-</h3>
-
-
-<p className="mt-2 text-lg font-bold text-indigo-600">
-
-${price}
-
-</p>
-
-
-{/* NOTE: "Add to Cart" is intentionally left unwired — moving a
-    wishlist item into the cart is not part of today's topics
-    (Wishlist Show/Remove only). Wire it up the same way as
-    removeWishlist whenever that feature is taught. */}
-<button
-
-className="mt-4 w-full rounded-lg border border-indigo-600 py-2.5 text-sm font-semibold text-indigo-600 hover:bg-indigo-600 hover:text-white"
-
->
-
-Add to Cart
-
-</button>
-
-
-</div>
-
-
-</div>
-
-)
-
+      <div className="flex items-start justify-between gap-4 px-1 pt-4">
+        <Link
+          to={`/products/${productId}`}
+          className="line-clamp-2 text-sm font-bold leading-5 tracking-tight"
+        >
+          {title}
+        </Link>
+        <p className="shrink-0 text-sm font-black">${price}</p>
+      </div>
+    </article>
+  );
 }
-
 
 export default WishlistItem;
