@@ -13,10 +13,53 @@ function Home() {
 
       {/* Marquee */}
       <section className="overflow-hidden border-y border-black/10 bg-[#dce2e4] py-4">
-        <div className="whitespace-nowrap text-center text-[11px] font-bold uppercase tracking-[0.25em] text-black/60">
-          New Season — Everyday Essentials — Curated Products — Shoply —
-          New Season — Everyday Essentials — Curated Products
-        </div>
+    <div className="flex w-max animate-marquee whitespace-nowrap">
+    {/* First text */}
+    <div className="flex shrink-0 items-center">
+      <span className="px-5 text-[11px] font-bold uppercase tracking-[0.25em] text-black/60">
+        New Season
+      </span>
+      <span className="text-black/30">✳</span>
+
+      <span className="px-5 text-[11px] font-bold uppercase tracking-[0.25em] text-black/60">
+        Everyday Essentials
+      </span>
+      <span className="text-black/30">✳</span>
+
+      <span className="px-5 text-[11px] font-bold uppercase tracking-[0.25em] text-black/60">
+        Curated Products
+      </span>
+      <span className="text-black/30">✳</span>
+
+      <span className="px-5 text-[11px] font-bold uppercase tracking-[0.25em] text-black/60">
+        Shoply
+      </span>
+      <span className="text-black/30">✳</span>
+    </div>
+
+    {/* Duplicate for seamless loop */}
+    <div className="flex shrink-0 items-center" aria-hidden="true">
+      <span className="px-5 text-[11px] font-bold uppercase tracking-[0.25em] text-black/60">
+        New Season
+      </span>
+      <span className="text-black/30">✳</span>
+
+      <span className="px-5 text-[11px] font-bold uppercase tracking-[0.25em] text-black/60">
+        Everyday Essentials
+      </span>
+      <span className="text-black/30">✳</span>
+
+      <span className="px-5 text-[11px] font-bold uppercase tracking-[0.25em] text-black/60">
+        Curated Products
+      </span>
+      <span className="text-black/30">✳</span>
+
+      <span className="px-5 text-[11px] font-bold uppercase tracking-[0.25em] text-black/60">
+        Shoply
+      </span>
+      <span className="text-black/30">✳</span>
+      </div>
+      </div>
       </section>
 
       <CategorySection />
