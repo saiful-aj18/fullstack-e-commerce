@@ -2,6 +2,13 @@
 
 A full-stack e-commerce application built with React on the client side and Node.js/Express on the server side. The platform allows users to browse products, register and sign in, manage a cart and wishlist, place orders, and review products.
 
+
+
+## 🌐 Live Demo
+
+https://findbackbd73.vercel.app/
+
+
 ## Tech Stack
 
 - Frontend: React, Vite, Tailwind CSS, React Router DOM
