@@ -6,7 +6,7 @@ A full-stack e-commerce application built with React on the client side and Node
 
 ## 🌐 Live Demo
 
-https://findbackbd73.vercel.app/
+https://shoply73.vercel.app/
 
 
 ## Tech Stack
