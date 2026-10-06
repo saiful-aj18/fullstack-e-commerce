@@ -12,6 +12,9 @@ import legalRoutes from "./routes/legalRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import reviewRoute from "./routes/reviewRoute.js";
 
+import productRoutes from "./routes/productRoutes.js";
+import adminRoutes from "./routes/adminRoutes.js";
+
 // FakeStore backup API
 import fakeStoreRoutes from "./routes/fakeStoreRoutes.js";
 
@@ -53,6 +56,11 @@ app.use(
 );
 
 app.use(
+  "/api/products",
+  productRoutes
+);
+
+app.use(
   "/api/cart",
   cartRoutes
 );
@@ -70,6 +78,8 @@ app.use(
 app.use("/api/order", orderRoutes);
 
 app.use("/api/review", reviewRoute);
+
+app.use("/api/admin", adminRoutes);
 
 // FakeStore-compatible backup API
 app.use("/fake-store", fakeStoreRoutes);

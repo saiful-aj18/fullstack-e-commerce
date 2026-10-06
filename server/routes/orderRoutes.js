@@ -1,42 +1,53 @@
 import express from "express";
 import Order from "../models/Order.js";
+import {
+  protect
+} from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
-// ---------------------------------------------------------
-// Create Order (Checkout)  --  EXISTING route, logic fixed
-// POST /api/order
-// body: { user, products, totalPrice }
-// ---------------------------------------------------------
-router.post("/", async (req, res) => {
-  try {
-    const { user, products, totalPrice } = req.body;
+router.post(
+  "/",
+  protect,
+  async (req, res) => {
+    try {
+      const {
+        products,
+        totalPrice
+      } = req.body;
 
-    if (!user || !products || products.length === 0 || totalPrice === undefined) {
-      return res.status(400).json({
+      if (
+        !products ||
+        products.length === 0 ||
+        totalPrice === undefined
+      ) {
+        return res.status(400).json({
+          success: false,
+          message:
+            "Products and totalPrice are required."
+        });
+      }
+
+      const order = await Order.create({
+        user: req.user._id,
+        products,
+        totalPrice
+      });
+
+      res.status(201).json({
+        success: true,
+        message:
+          "Order created successfully.",
+        order
+      });
+    } catch (error) {
+      res.status(500).json({
         success: false,
-        message: "User, products and totalPrice are required."
+        message: error.message
       });
     }
-
-    const order = await Order.create({
-      user,
-      products,
-      totalPrice
-    });
-
-    res.status(201).json({
-      success: true,
-      message: "Order created successfully.",
-      order
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: error.message
-    });
   }
-});
+);
 
 // ---------------------------------------------------------
 // Show Single Order (for Invoice page)  --  NEW route
