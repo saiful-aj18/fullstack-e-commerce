@@ -1,70 +1,157 @@
 # Fullstack E-Commerce
 
-A full-stack e-commerce application built with React on the client side and Node.js/Express on the server side. The platform allows users to browse products, register and sign in, manage a cart and wishlist, place orders, and review products.
+A modern full-stack e-commerce application built with **React, Vite, Tailwind CSS, Node.js, Express.js, and MongoDB**.
 
+The platform provides a complete online shopping experience where users can browse products, create accounts, manage their cart and wishlist, place orders, write reviews, and manage their profiles. It also includes a dedicated **Admin Dashboard** for managing products, users, orders, inventory, and reviews.
 
+---
 
 ## 🌐 Live Demo
 
+**Frontend:**  
 https://shoply73.vercel.app/
 
+---
 
-## Tech Stack
+## ✨ Features
 
-- Frontend: React, Vite, Tailwind CSS, React Router DOM
-- Backend: Node.js, Express.js
-- Database: MongoDB with Mongoose
-- Authentication: JWT + bcryptjs
-- HTTP Client: Axios
+### 👤 User Features
 
-## Features
-
-- User registration and login
-- Profile management
-- Product listing and product details pages
-- Cart and wishlist functionality
-- Order creation and invoice viewing
+- User registration and secure login
+- JWT-based authentication
+- User profile management
+- Browse products
+- Product details page
+- Product search and category browsing
+- Shopping cart management
+- Wishlist functionality
+- Add and manage cart items
+- Place orders
+- View order history
+- Order invoice generation and viewing
 - Product reviews and ratings
-- Legal pages: Terms, Privacy Policy, and How to Buy
-- Responsive storefront UI
+- Terms & Conditions page
+- Privacy Policy page
+- How to Buy page
+- Responsive design for desktop, tablet, and mobile
 
-## Project Structure
+### 🛠️ Admin Features
+
+- Dedicated Admin Dashboard
+- Admin authentication and protected routes
+- Dashboard overview and store statistics
+- Product management
+- Add new products
+- Edit existing products
+- Delete products
+- Product search
+- Inventory and stock management
+- Order management
+- Update order status
+- User management
+- Activate/deactivate users
+- Manage user roles
+- Review management
+- Delete inappropriate reviews
+- Protected admin API endpoints
+
+### 🎨 UI & Performance
+
+- Modern and responsive storefront UI
+- Premium minimal design
+- Mobile-friendly admin dashboard
+- Responsive admin sidebar
+- Mobile admin navigation drawer
+- Smooth hover and transition effects
+- Fast Vite development environment
+- Vercel Analytics integration
+
+### 🚀 Deployment
+
+- Frontend deployed on Vercel
+- Backend deployed on Render
+- MongoDB Atlas database support
+- SPA routing configuration for Vercel
+- Environment-based API configuration
+
+---
+
+## 🧰 Tech Stack
+
+### Frontend
+
+- React
+- Vite
+- Tailwind CSS
+- React Router DOM
+- Axios
+- Lucide React
+- GSAP
+- Vercel Analytics
+
+### Backend
+
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT
+- bcryptjs
+- CORS
+- dotenv
+
+### Deployment
+
+- Vercel
+- Render
+- MongoDB Atlas
+
+---
+
+## 📁 Project Structure
 
 ```text
 fullstack-e-commerce/
-├── client/                 # React frontend
-│   ├── src/                # App pages, components, styles
-│   ├── public/             # Static assets
+│
+├── client/
+│   ├── public/
+│   ├── src/
+│   │   ├── api/
+│   │   ├── assets/
+│   │   ├── components/
+│   │   │   ├── admin/
+│   │   │   ├── common/
+│   │   │   └── layout/
+│   │   │
+│   │   ├── pages/
+│   │   │   ├── admin/
+│   │   │   └── ...
+│   │   │
+│   │   ├── App.jsx
+│   │   ├── App.css
+│   │   └── main.jsx
+│   │
 │   ├── package.json
+│   ├── vercel.json
 │   └── vite.config.js
-├── server/                 # Express backend
-│   ├── config/             # Database and app configuration
-│   ├── controllers/        # Request handlers
-│   ├── models/             # Mongoose schemas
-│   ├── routes/             # API route definitions
-│   ├── middlewares/        # Error and auth middleware
+│
+├── server/
+│   ├── config/
+│   ├── controllers/
+│   ├── data/
+│   ├── middlewares/
+│   ├── models/
+│   ├── routes/
+│   ├── seedProducts.js
 │   ├── server.js
-│   └── package.json
+│   ├── package.json
+│   └── .env
+│
 ├── .gitignore
 ├── README.md
 └── package.json
-```
 
-## Prerequisites
 
-Before running the app, make sure you have:
-
-- Node.js installed
-- npm or yarn installed
-- MongoDB running locally or a MongoDB Atlas connection string
-
-## Installation
-
-### 1) Clone the repository
-
-```bash
-git clone https://github.com/saiful-aj18/fullstack-e-commerce.git
-cd fullstack-e-commerce
 ```
 
 ### 2) Install frontend dependencies
@@ -129,10 +216,17 @@ The backend exposes REST APIs for:
 - Reviews
 - Legal content
 
-## License
+## 📄 License
 
 This project is currently unlicensed unless otherwise specified in the repository.
 
-## Author
+## 👨‍💻 Author
 
-Built as a full-stack e-commerce demo project for learning and portfolio purposes.
+Saiful Islam
+
+Full-Stack Developer
+Bangladesh
+
+GitHub:
+
+https://github.com/saiful-aj18
