@@ -216,10 +216,17 @@ The backend exposes REST APIs for:
 - Reviews
 - Legal content
 
-## License
+## 📄 License
 
 This project is currently unlicensed unless otherwise specified in the repository.
 
-## Author
+## 👨‍💻 Author
 
-Built as a full-stack e-commerce demo project for learning and portfolio purposes.
+Saiful Islam
+
+Full-Stack Developer
+Bangladesh
+
+GitHub:
+
+https://github.com/saiful-aj18
