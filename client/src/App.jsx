@@ -32,6 +32,7 @@ import AdminLayout from "./components/admin/AdminLayout";
 
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminProducts from "./pages/admin/AdminProducts";
+import AdminProductForm from "./pages/admin/AdminProductForm";
 import AdminOrders from "./pages/admin/AdminOrders";
 import AdminUsers from "./pages/admin/AdminUsers";
 import AdminReviews from "./pages/admin/AdminReviews";
@@ -49,6 +50,7 @@ function CustomerLayout() {
       <main className="flex-1">
         <Routes>
           <Route path="/" Component={Home} />
+
           <Route path="/register" Component={Register} />
           <Route path="/login" Component={Login} />
 
@@ -59,17 +61,26 @@ function CustomerLayout() {
           <Route path="/orders" Component={Orders} />
 
           {/* Invoice */}
-          <Route path="/invoice/:orderId" Component={Invoice} />
+          <Route
+            path="/invoice/:orderId"
+            Component={Invoice}
+          />
 
           {/* Product Review */}
-          <Route path="/review/:productId" Component={Review} />
+          <Route
+            path="/review/:productId"
+            Component={Review}
+          />
 
           <Route path="/terms" Component={Terms} />
           <Route path="/privacy" Component={Privacy} />
           <Route path="/how-to-buy" Component={HowToBuy} />
 
           <Route path="/products" Component={Products} />
-          <Route path="/products/:id" Component={ProductDetails} />
+          <Route
+            path="/products/:id"
+            Component={ProductDetails}
+          />
 
           <Route path="*" Component={NotFound} />
         </Routes>
@@ -104,20 +115,49 @@ function App() {
           </AdminRoute>
         }
       >
+
         {/* /admin */}
-        <Route index element={<AdminDashboard />} />
+        <Route
+          index
+          element={<AdminDashboard />}
+        />
 
         {/* /admin/products */}
-        <Route path="products" element={<AdminProducts />} />
+        <Route
+          path="products"
+          element={<AdminProducts />}
+        />
+
+        {/* /admin/products/new */}
+        <Route
+          path="products/new"
+          element={<AdminProductForm />}
+        />
+
+        {/* /admin/products/edit/:id */}
+        <Route
+          path="products/edit/:id"
+          element={<AdminProductForm />}
+        />
 
         {/* /admin/orders */}
-        <Route path="orders" element={<AdminOrders />} />
+        <Route
+          path="orders"
+          element={<AdminOrders />}
+        />
 
         {/* /admin/users */}
-        <Route path="users" element={<AdminUsers />} />
+        <Route
+          path="users"
+          element={<AdminUsers />}
+        />
 
         {/* /admin/reviews */}
-        <Route path="reviews" element={<AdminReviews />} />
+        <Route
+          path="reviews"
+          element={<AdminReviews />}
+        />
+
       </Route>
 
 
@@ -125,7 +165,10 @@ function App() {
           CUSTOMER ROUTES
       ===================== */}
 
-      <Route path="/*" element={<CustomerLayout />} />
+      <Route
+        path="/*"
+        element={<CustomerLayout />}
+      />
 
     </Routes>
   );
