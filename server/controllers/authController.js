@@ -44,7 +44,8 @@ const registerUser = async (req, res, next) => {
       user: {
         id: user._id,
         name: user.name,
-        email: user.email
+        email: user.email,
+        role: user.role
       }
     });
   } catch (error) {
@@ -102,7 +103,8 @@ const loginUser = async (req, res, next) => {
         email: user.email,
         phone: user.phone,
         address: user.address,
-        avatar: user.avatar
+        avatar: user.avatar,
+        role: user.role
       }
     });
   } catch (error) {
