@@ -1,6 +1,6 @@
 import "./App.css";
 
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route,Navigate } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
 
 // Customer Layout
@@ -24,7 +24,7 @@ import HowToBuy from "./pages/HowToBuy";
 
 import Products from "./pages/Products";
 import ProductDetails from "./pages/ProductDetails";
-import NotFound from "./pages/NotFound";
+//import NotFound from "./pages/NotFound";
 
 // Admin
 import AdminRoute from "./components/admin/AdminRoute";
@@ -82,7 +82,7 @@ function CustomerLayout() {
             Component={ProductDetails}
           />
 
-          <Route path="*" Component={NotFound} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
 
