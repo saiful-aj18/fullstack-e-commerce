@@ -1,31 +1,47 @@
-import './App.css'
+import "./App.css";
 
 import { Routes, Route } from "react-router-dom";
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from "@vercel/analytics/react";
 
+// Customer Layout
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 
+// Customer Pages
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Cart from "./pages/Cart";
 import Wishlist from "./pages/Wishlist";
+import Orders from "./pages/Orders.jsx";
+import Invoice from "./pages/Invoice.jsx";
+import Review from "./pages/Review.jsx";
 
 import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
 import HowToBuy from "./pages/HowToBuy";
 
-import NotFound from "./pages/NotFound";
-import Orders from './pages/Orders.jsx';
-import Invoice from './pages/Invoice.jsx';
-import Review from './pages/Review.jsx'; 
-import Register from './pages/Register.jsx';
-
 import Products from "./pages/Products";
 import ProductDetails from "./pages/ProductDetails";
+import NotFound from "./pages/NotFound";
 
-function App() {
+// Admin
+import AdminRoute from "./components/admin/AdminRoute";
+import AdminLayout from "./components/admin/AdminLayout";
+
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminProducts from "./pages/admin/AdminProducts";
+import AdminOrders from "./pages/admin/AdminOrders";
+import AdminUsers from "./pages/admin/AdminUsers";
+import AdminReviews from "./pages/admin/AdminReviews";
+
+
+/* =========================
+   CUSTOMER LAYOUT
+========================= */
+
+function CustomerLayout() {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
@@ -42,10 +58,10 @@ function App() {
 
           <Route path="/orders" Component={Orders} />
 
-          {/* NEW — Invoice for one specific order */}
+          {/* Invoice */}
           <Route path="/invoice/:orderId" Component={Invoice} />
 
-          {/* NEW — Write a review for one product */}
+          {/* Product Review */}
           <Route path="/review/:productId" Component={Review} />
 
           <Route path="/terms" Component={Terms} />
@@ -60,8 +76,58 @@ function App() {
       </main>
 
       <Footer />
+
+      {/* Vercel Analytics */}
       <Analytics />
     </div>
+  );
+}
+
+
+/* =========================
+   MAIN APP
+========================= */
+
+function App() {
+  return (
+    <Routes>
+
+      {/* =====================
+          ADMIN ROUTES
+      ===================== */}
+
+      <Route
+        path="/admin"
+        element={
+          <AdminRoute>
+            <AdminLayout />
+          </AdminRoute>
+        }
+      >
+        {/* /admin */}
+        <Route index element={<AdminDashboard />} />
+
+        {/* /admin/products */}
+        <Route path="products" element={<AdminProducts />} />
+
+        {/* /admin/orders */}
+        <Route path="orders" element={<AdminOrders />} />
+
+        {/* /admin/users */}
+        <Route path="users" element={<AdminUsers />} />
+
+        {/* /admin/reviews */}
+        <Route path="reviews" element={<AdminReviews />} />
+      </Route>
+
+
+      {/* =====================
+          CUSTOMER ROUTES
+      ===================== */}
+
+      <Route path="/*" element={<CustomerLayout />} />
+
+    </Routes>
   );
 }
 
